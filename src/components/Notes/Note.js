@@ -19,7 +19,7 @@ const Note = (props) => {
   };
 
   const deleteNoteHandler = (event) => {
-    event.stopPropagation(); // Prevent the noteClickHandler from being called
+    event.stopPropagation(); 
     deleteNote(note.id);
   };
 
@@ -39,49 +39,44 @@ const Note = (props) => {
 
       <div className="title">{note.title}</div>
       <div className="text">{note.text}</div>
-      {hoveredOver && (
-        <div
-          className="note-footer"
-          style={{ visibility: hoveredOver ? "visible" : "hidden" }}
-        >
-          <div className="tooltip">
-            <span className="material-symbols-outlined hover small-icon">
-              add_alert
-            </span>
-            <span className="tooltip-text">Remind me</span>
-          </div>
-          <div className="tooltip">
-            <span className="material-symbols-outlined hover small-icon">
-              person_add
-            </span>
-            <span className="tooltip-text">Collaborator</span>
-          </div>
-          <div className="tooltip">
-            <span className="material-symbols-outlined hover small-icon">
-              palette
-            </span>
-            <span className="tooltip-text">Change Color</span>
-          </div>
-          <div className="tooltip">
-            <span className="material-symbols-outlined hover small-icon">
-              image
-            </span>
-            <span className="tooltip-text">Add Image</span>
-          </div>
-          <div className="tooltip archive" onClick={deleteNoteHandler}>
-            <span className="material-symbols-outlined hover small-icon">
-              archive
-            </span>
-            <span className="tooltip-text">Archive</span>
-          </div>
-          <div className="tooltip">
-            <span className="material-symbols-outlined hover small-icon">
-              more_vert
-            </span>
-            <span className="tooltip-text">More</span>
-          </div>
+      <div className="note-footer">
+        <div className={`tooltip ${hoveredOver ? "visible" : "hidden"}`}>
+          <span className="material-symbols-outlined hover small-icon">
+            add_alert
+          </span>
+          <span className="tooltip-text">Remind me</span>
         </div>
-      )}
+        <div className={`tooltip ${hoveredOver ? "visible" : "hidden"}`}>
+          <span className="material-symbols-outlined hover small-icon">
+            person_add
+          </span>
+          <span className="tooltip-text">Collaborator</span>
+        </div>
+        <div className={`tooltip ${hoveredOver ? "visible" : "hidden"}`}>
+          <span className="material-symbols-outlined hover small-icon">
+            palette
+          </span>
+          <span className="tooltip-text">Change Color</span>
+        </div>
+        <div className={`tooltip ${hoveredOver ? "visible" : "hidden"}`}>
+          <span className="material-symbols-outlined hover small-icon">
+            image
+          </span>
+          <span className="tooltip-text">Add Image</span>
+        </div>
+        <div className={`tooltip archive ${hoveredOver ? "visible" : "hidden"}`} onClick={deleteNoteHandler}>
+          <span className="material-symbols-outlined hover small-icon">
+            archive
+          </span>
+          <span className="tooltip-text">Archive</span>
+        </div>
+        <div className={`tooltip ${hoveredOver ? "visible" : "hidden"}`}>
+          <span className="material-symbols-outlined hover small-icon">
+            more_vert
+          </span>
+          <span className="tooltip-text">More</span>
+        </div>
+      </div>
     </div>
   );
 };
