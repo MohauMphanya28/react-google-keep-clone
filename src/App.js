@@ -13,6 +13,12 @@ const App = () => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+
   const addNote = (note) => {
     setNotes((prevNotes) => {
       return [...notes, note];
@@ -46,8 +52,8 @@ const App = () => {
 
   return (
     <div className="App">
-      <Navbar />
-      <Sidebar />
+      <Navbar toggleSidebar={toggleSidebar} />
+      <Sidebar isSidebarOpen={isSidebarOpen} />
       <Form addNote={addNote} />
       <Notes
         notes={notes}

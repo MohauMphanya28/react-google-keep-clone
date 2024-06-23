@@ -148,24 +148,4 @@ const Form = (props) => {
 
 export default Form;
 
-{
-  /* <div className="form-container inactive-form" onClick={formClickHandler}>
-          <form>
-            <input type="text" className="note-text" placeholder="Take a note..." />
-            <div className="form-actions">
-              <div className="tooltip">
-                <span className="material-symbols-outlined hover">check_box</span>
-                <span className="tooltip-text">New List</span>
-              </div>
-              <div className="tooltip">
-                <span className="material-symbols-outlined hover">brush</span>
-                <span className="tooltip-text">New Drawing</span>
-              </div>
-              <div className="tooltip">
-                <span className="material-symbols-outlined hover">image</span>
-                <span className="tooltip-text">New Image</span>
-              </div>
-            </div>
-          </form>
-</div> */
-}
+
