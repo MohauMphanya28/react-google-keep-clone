@@ -19,7 +19,7 @@ const Note = (props) => {
   };
 
   const deleteNoteHandler = (event) => {
-    event.stopPropagation(); 
+    event.stopPropagation();
     deleteNote(note.id);
   };
 
@@ -64,7 +64,10 @@ const Note = (props) => {
           </span>
           <span className="tooltip-text">Add Image</span>
         </div>
-        <div className={`tooltip archive ${hoveredOver ? "visible" : "hidden"}`} onClick={deleteNoteHandler}>
+        <div
+          className={`tooltip archive ${hoveredOver ? "visible" : "hidden"}`}
+          onClick={deleteNoteHandler}
+        >
           <span className="material-symbols-outlined hover small-icon">
             archive
           </span>

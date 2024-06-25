@@ -32,7 +32,7 @@ const Form = (props) => {
       props.editNote({
         id: selectedNote.id,
         title,
-        text
+        text,
       });
       toggleModal();
     }
@@ -46,7 +46,8 @@ const Form = (props) => {
     setIsActiveForm(true);
   };
 
-  const closeFormHandler = () => {
+  const closeFormHandler = (event) => {
+    event.stopPropagation(); // Prevent triggering other click handlers
     if (title.trim() === "" && text.trim() === "") {
       setIsActiveForm(false);
     } else {
