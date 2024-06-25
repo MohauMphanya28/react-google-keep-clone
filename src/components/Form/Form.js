@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import "./Form.css";
 import { uid } from "uid";
 
 const Form = (props) => {
-  const { edit, selectedNote, toggleModal } = props;
+  const { edit, selectedNote, toggleModal, editNote, addNote } = props;
   const [title, setTitle] = useState((edit && selectedNote.title) || "");
   const [text, setText] = useState((edit && selectedNote.text) || "");
   const [isActiveForm, setIsActiveForm] = useState(edit);
@@ -15,7 +15,7 @@ const Form = (props) => {
     setIsActiveForm(true);
   };
 
-  const submitFormHandler = (event) => {
+  const submitFormHandler = useCallback((event) => {
     event.preventDefault();
 
     if (title.trim() === "" && text.trim() === "") {
@@ -23,13 +23,13 @@ const Form = (props) => {
     }
 
     if (!edit) {
-      props.addNote({
+      addNote({
         id: uid(),
         title,
         text,
       });
     } else {
-      props.editNote({
+      editNote({
         id: selectedNote.id,
         title,
         text,
@@ -40,7 +40,7 @@ const Form = (props) => {
     setTitle("");
     setText("");
     setIsActiveForm(false);
-  };
+  }, [addNote, edit, editNote, selectedNote, text, title, toggleModal]);
 
   const formClickHandler = () => {
     setIsActiveForm(true);
@@ -75,10 +75,14 @@ const Form = (props) => {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [title, text]);
+  }, [title, text, submitFormHandler]);
 
   return (
-    <div ref={formRef} className={`form-container ${isActiveForm ? "active-form" : ""}`} onClick={formClickHandler}>
+    <div
+      ref={formRef}
+      className={`form-container ${isActiveForm ? "active-form" : ""}`}
+      onClick={formClickHandler}
+    >
       <form onSubmit={submitFormHandler} className={isActiveForm ? "form" : ""}>
         {isActiveForm && (
           <input
@@ -148,7 +152,11 @@ const Form = (props) => {
                 <span className="tooltip-text">Redo</span>
               </div>
             </div>
-            <button type="button" className="close-btn" onClick={closeFormHandler}>
+            <button
+              type="button"
+              className="close-btn"
+              onClick={closeFormHandler}
+            >
               close
             </button>
           </div>
@@ -175,4 +183,3 @@ const Form = (props) => {
 };
 
 export default Form;
- 
