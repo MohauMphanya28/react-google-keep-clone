@@ -67,6 +67,11 @@
   margin-right: 15px;
 }
 
+.close-btn:hover {
+  background-color: rgb(242, 244, 245);
+  border-radius: 8px;
+}
+
 .small-icon {
   color: black;
   font-size: 1.1rem;
